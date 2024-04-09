@@ -8,6 +8,10 @@ class Main extends Controller
 {
     public function index()
     {
-        echo "Teste com o Laravel 10!";
+        $data = [
+            'title' => 'Teste com laravel',
+            'descricao' => 'Carregar informações!',
+        ];
+        return view('main', $data);
     }
 }
