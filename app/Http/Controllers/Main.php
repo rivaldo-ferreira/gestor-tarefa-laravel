@@ -40,4 +40,13 @@ class Main extends Controller
             echo $user->username . '<br>';
         }
     }
+
+    public function view()
+    {
+        $data = [
+            'title' => 'Gestor de Tarefas',
+        ];
+
+        return view('home', $data);
+    }
 }
