@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+
+    try {
+        DB::connection()->getPdo();
+        echo "Conexão efetuada com sucesso ao BD: " . DB::connection()->getDataBaseName();
+    } catch (\Exception $e) {
+        die('Não foi possível conectar à base de dados! ' . $e->getMessage());
+    }
 });
