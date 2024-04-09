@@ -15,16 +15,4 @@ use App\Http\Controllers\Main;
 |
 */
 
-Route::get('/', function () {
-
-    try {
-        DB::connection()->getPdo();
-        echo "Conexão efetuada com sucesso ao BD: " . DB::connection()->getDataBaseName();
-    } catch (\Exception $e) {
-        die('Não foi possível conectar à base de dados! ' . $e->getMessage());
-    }
-});
-
-Route::get('/main', [Main::class, 'index']);
-Route::get('/users', [Main::class, 'users']);
-Route::get('/view', [Main::class, 'view']);
+Route::get('/main', [Main::class, 'index'])->name('index');
