@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Main;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,5 @@ Route::get('/', function () {
         die('Não foi possível conectar à base de dados! ' . $e->getMessage());
     }
 });
+
+Route::get('/main', [Main::class, 'index']);
