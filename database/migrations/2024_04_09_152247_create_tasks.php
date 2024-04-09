@@ -24,7 +24,7 @@ return new class extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * Reverse the migrations. **** php artisan migrate:rollback
      */
     public function down(): void
     {
