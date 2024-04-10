@@ -16,3 +16,10 @@ use App\Http\Controllers\Main;
 */
 
 Route::get('/main', [Main::class, 'index'])->name('index');
+
+// ******** LOGIN ROUTES *********
+Route::get('/login', [Main::class, 'login'])->name('login');
+Route::post('/login_submit', [Main::class, 'login_submit'])->name('login_submit');
+
+// ******** MAIN PAGE *********
+Route::get('/main', [Main::class, 'main'])->name('main');
