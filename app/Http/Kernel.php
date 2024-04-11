@@ -67,5 +67,6 @@ class Kernel extends HttpKernel
 
         //configurar middleware
         'CheckLogin' => \App\Http\Middleware\CheckLogin::class,
+        'CheckLogout' => \App\Http\Middleware\CheckLogout::class,
     ];
 }
