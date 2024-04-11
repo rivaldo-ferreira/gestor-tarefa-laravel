@@ -15,11 +15,15 @@ use App\Http\Controllers\Main;
 |
 */
 
-Route::get('/', [Main::class, 'index'])->name('index');
 
 // ******** LOGIN ROUTES *********
 Route::get('/login', [Main::class, 'login'])->name('login');
 Route::post('/login_submit', [Main::class, 'login_submit'])->name('login_submit');
 
-// ******** MAIN PAGE *********
-Route::get('/main', [Main::class, 'main'])->name('main');
+// ******** MIDDLEWARE *********
+Route::middleware('CheckLogin')->group(function () {
+
+    Route::get('/', [Main::class, 'index'])->name('index');
+    // ******** MAIN PAGE *********
+    Route::get('/main', [Main::class, 'main'])->name('main');
+});
