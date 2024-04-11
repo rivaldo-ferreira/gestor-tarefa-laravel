@@ -15,7 +15,7 @@ use App\Http\Controllers\Main;
 |
 */
 
-Route::get('/main', [Main::class, 'index'])->name('index');
+Route::get('/', [Main::class, 'index'])->name('index');
 
 // ******** LOGIN ROUTES *********
 Route::get('/login', [Main::class, 'login'])->name('login');
