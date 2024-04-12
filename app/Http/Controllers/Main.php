@@ -72,6 +72,21 @@ class Main extends Controller
         return redirect()->route('login');
     }
 
+    /* ------------------ NEW TASK ------------------ */
+    public function new_task()
+    {
+        $data = [
+            'title' => 'Nova Tarefa',
+        ];
+
+        return view('new_task_frm', $data);
+    }
+
+    public function new_task_submit()
+    {
+        echo 'Guardar nova tarefa';
+    }
+
     /* ------------------ PRIVATE METHODS ------------------ */
     private function _get_tasks()
     {
