@@ -35,9 +35,9 @@ class Main extends Controller
             'text_password' => 'required|min:3',
         ], [
             'text_username.required' => 'Campo obrigatório',
-            'text_username.min' => 'Nome do usuário - mínimo três caracteres',
+            'text_username.min' => 'Três caracteres no mínimo!',
             'text_password.required' => 'Campo obrigatório',
-            'text_password.min' => 'Senha - mínimo três caracteres',
+            'text_password.min' => 'Três caracteres no mínimo!',
         ]);
 
         echo 'Formulário preenchido corretamente!!!';
