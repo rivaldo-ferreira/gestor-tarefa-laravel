@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\UserModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -40,7 +41,26 @@ class Main extends Controller
             'text_password.min' => 'Três caracteres no mínimo!',
         ]);
 
-        echo 'Formulário preenchido corretamente!!!';
+        //lógica do login
+        $username = $request->input('text_username');
+        $password = $request->input('text_password');
+
+        //usuario existe?
+        $model = new UserModel();
+        $user = $model->where('username', '=', $username)->whereNull('deleted_at')->first();
+
+        if ($user) {
+            if (password_verify($password, $user->password)) {
+                $session_data = [
+                    'id' => $user->id,
+                    'username' => $user->username,
+                ];
+                session()->put($session_data);
+                return redirect()->route('index');
+            }
+        }
+        // login invalido
+        return redirect()->route('login')->withInput()->with('login_error', 'Login inválido!');
     }
 
     /* ------------------ LOGOUT ------------------ */
