@@ -20,7 +20,7 @@
                 <button type="submit" class="btn btn-dark w-100">Entrar</button>
             </div>
         </form>
-         {{-- ------------------ LOGOUT ------------------  --}}
+         {{-- ------------------ ALERTA DE ERRO ------------------  --}}
         @if ($errors->any())
             <div class="alert alert-danger p-2">
                 @foreach ($errors->all() as $error)
@@ -30,7 +30,4 @@
         @endif
     </div>
 </div>
-
-
-
 @endsection
