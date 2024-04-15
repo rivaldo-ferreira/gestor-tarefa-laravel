@@ -82,9 +82,25 @@ class Main extends Controller
         return view('new_task_frm', $data);
     }
 
-    public function new_task_submit()
+    public function new_task_submit(Request $request)
     {
-        echo 'Guardar nova tarefa';
+        //form validation
+        request()->validate([
+            'text_task_name' => 'required|min:3|max:200',
+            'text_task_description' => 'required|min:3|max:1000',
+        ], [
+            'text_task_name.required' => 'Campo obrigatório',
+            'text_task_name.min' => ':min caracteres no mínimo!',
+            'text_task_name.max' => ':max caracteres no máximo!',
+
+            'text_task_description.required' => 'Campo obrigatório',
+            'text_task_description.min' => ':min caracteres no mínimo!',
+            'text_task_description.max' => ':max caracteres no máximo!',
+        ]);
+
+        //get from data
+        $task_name = $request->input('text_task_name');
+        $task_description = $request->input('text_task_name');
     }
 
     /* ------------------ PRIVATE METHODS ------------------ */
