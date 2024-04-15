@@ -15,7 +15,7 @@
             </div>
 
             @if($tasks->count() != 0)
-                <table class="table table-striped table-bordered">
+                <table class="table table-striped table-bordered" id="table_tasks" width="100%">
                     <thead class="table-dark">
                         <tr>
                             <th class="w-50">Tarefa</th>
@@ -24,13 +24,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($tasks as $task)
+                        {{-- @foreach($tasks as $task)
                             <tr>
                                 <td>{{ $task->task_name }}</td>
                                 <td class="text-center">{{ $task->task_status }}</td>
                                 <td class="text-center">[actions]</td>
                             </tr>
-                        @endforeach
+                        @endforeach --}}
                     </tbody>
                 </table>
             @else
@@ -39,5 +39,18 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function(){
+        $('#table_tasks').DataTable({
+            data: @json($tasks),
+            columns: [
+                { data: 'task_name'},
+                { data: 'task_status'},
+                { data: 'id'},
+            ]
+        });
+    });
+</script>
     
 @endsection
