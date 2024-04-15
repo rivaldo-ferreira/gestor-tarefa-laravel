@@ -10,7 +10,7 @@
                     <h4 class="fw-bold">Tarefas</h4>
                 </div>
                 <div class="col text-end">
-                    <a href="{{ route('new_task') }}" class="btn btn-primary"><i class="bi bi-plus-square me-2"></i>Nova Tarefa</a>
+                    <a href="{{ route('new_task') }}" class="btn btn-primary my-3"><i class="bi bi-plus-square me-2"></i>Nova Tarefa</a>
                 </div>
             </div>
 
