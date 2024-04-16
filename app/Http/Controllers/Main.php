@@ -138,6 +138,31 @@ class Main extends Controller
 
             return redirect()->route('index');
         }
+
+        //buscar dados da tarefa
+        $model = new TaskModel();
+        $task = $model->where('id', '=', $id)
+            ->where('id_user', '=', session('id')) //opcional
+            ->whereNull('deleted_at') //opcional
+            ->first();
+
+        //checar se a tarefa existe
+        if (empty($task)) {
+            return redirect()->route('index');
+        }
+
+        $data = [
+            'title' => 'Editar Tarefa',
+            'task' => $task,
+        ];
+
+        return view('edit_task_frm', $data);
+    }
+
+    public function edit_task_submit(Request $request)
+    {
+        echo '<pre>';
+        print_r($request->all());
     }
 
     /* ------------------ PRIVATE METHODS ------------------ */
