@@ -161,8 +161,59 @@ class Main extends Controller
 
     public function edit_task_submit(Request $request)
     {
-        echo '<pre>';
-        print_r($request->all());
+        //form validation
+        request()->validate([
+            'text_task_name' => 'required|min:3|max:200',
+            'text_task_description' => 'required|min:3|max:1000',
+            'text_task_status' => 'required',
+        ], [
+            'text_task_name.required' => 'Campo obrigatório',
+            'text_task_name.min' => ':min caracteres no mínimo!',
+            'text_task_name.max' => ':max caracteres no máximo!',
+
+            'text_task_description.required' => 'Campo obrigatório',
+            'text_task_description.min' => ':min caracteres no mínimo!',
+            'text_task_description.max' => ':max caracteres no máximo!',
+
+            'text_task_status.required' => 'Campo obrigatório'
+        ]);
+
+        //get form  data
+        $id_task = null;
+        try {
+            $id_task = Crypt::decrypt($request->input('task_id'));
+        } catch (\Exception $e) {
+            return redirect()->route('index');
+        }
+
+
+        $task_name = $request->input('text_task_name');
+        $task_description = $request->input('text_task_description');
+        $task_status = $request->input('text_task_status');
+
+        //existe alguma tarefa com o mesmo nome
+        $model = new TaskModel();
+        $task = $model->where('id_user', '=', session('id'))
+            ->where('task_name', '=', $task_name)
+            ->where('id', '!=', $id_task)
+            ->whereNull('deleted_at')
+            ->first();
+
+        if ($task) {
+            return redirect()->route('edit_task', ['id' => Crypt::encrypt($id_task)])
+                ->with('task_error', 'Já existe uma tarefa com esse nome!');
+        }
+
+        // update task 
+        $model->where('id', '=', $id_task)
+            ->update([
+                'task_name' => $task_name,
+                'task_description' => $task_description,
+                'task_status' => $task_status,
+                'updated_at' => date('Y-m-d H:i:s'),
+            ]);
+
+        return redirect()->route('index');
     }
 
     /* ------------------ PRIVATE METHODS ------------------ */
