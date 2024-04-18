@@ -259,6 +259,18 @@ class Main extends Controller
         return redirect()->route('index');
     }
 
+    /* ------------------ SEARCH & SORT ------------------ */
+    public function search_submit(Request $request)
+    {
+        echo 'Search';
+    }
+
+    public function sort($status)
+    {
+        echo 'Sort';
+    }
+
+
     /* ------------------ PRIVATE METHODS ------------------ */
     private function _get_tasks()
     {

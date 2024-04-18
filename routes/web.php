@@ -30,8 +30,8 @@ Route::middleware('CheckLogin')->group(function () {
     Route::get('/logout', [Main::class, 'logout'])->name('logout');
 
     //tasks - new
-    Route::get('new_task', [Main::class, 'new_task'])->name('new_task');
-    Route::post('new_task_submit', [Main::class, 'new_task_submit'])->name('new_task_submit');
+    Route::get('/new_task', [Main::class, 'new_task'])->name('new_task');
+    Route::post('/new_task_submit', [Main::class, 'new_task_submit'])->name('new_task_submit');
 
     //tasks - edit
     Route::get('/edit_task/{id}', [Main::class, 'edit_task'])->name('edit_task');
@@ -40,4 +40,10 @@ Route::middleware('CheckLogin')->group(function () {
     //tasks - deleted
     Route::get('/delete_task/{id}', [Main::class, 'delete_task'])->name('delete_task');
     Route::get('/delete_task_confirm/{id}', [Main::class, 'delete_task_confirm'])->name('delete_task_confirm');
+
+    //search
+    Route::post('/search_submit', [Main::class, 'search_submit'])->name('search_submit');
+
+    //sort
+    Route::get('/sort/{sort}', [Main::class, 'sort'])->name('sort');
 });
